@@ -1800,10 +1800,14 @@ typedef void (^MXOnResumeDone)(void);
                                                                       userInfo:nil];
                 }
             }
-
+            else if([event[@"type"] isEqualToString:MXSDKOptions.sharedInstance.analyticsDelegate.settingsEventType])
+            {
+                [MXSDKOptions.sharedInstance.analyticsDelegate handleSettingsEvent:event];
+            }
+            
             // Update the corresponding part of account data
             [_accountData updateWithEvent:event];
-
+            
             if ([event[@"type"] isEqualToString:kMXAccountDataTypeIdentityServer])
             {
                 NSString *identityServer = self.accountDataIdentityServer;

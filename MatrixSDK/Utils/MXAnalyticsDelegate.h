@@ -33,6 +33,19 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol MXAnalyticsDelegate <NSObject>
 
 /**
+ The event type used to store any analytics settings in the user's account data.
+ */
+@property (nonatomic, readonly) NSString *settingsEventType;
+
+/**
+ Handle an updated settings event from the user's account data. Set
+ `settingsEventType` to match event type that should be handled.
+ 
+ @param event The updated event from the user's account data.
+ */
+- (void)handleSettingsEvent:(NSDictionary*)event;
+
+/**
  Report the duration of a task.
  
  An example is the time to load data from the local store at startup.
